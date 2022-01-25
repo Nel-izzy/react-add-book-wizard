@@ -9,33 +9,72 @@ import {
 } from "@mui/material";
 
 const StepTwo = () => {
-  const { setStep, setAddNewSubGenre, setSubGenres, subGenres } =
+  const { setStep, setAddNewSubGenre, setGenres, genres } =
     useContext(MultiStepContext);
   return (
     <div>
-      <FormLabel id="genre-radio-buttons-group-label">Genre</FormLabel>
-      <RadioGroup
-        row
-        aria-labelledby="genre-radio-buttons-group-label"
-        value={subGenres["name"]}
-        name="radio-buttons-group"
-        onChange={(e) => setSubGenres({ ...subGenres, name: e.target.value })}
-      >
-        <FormControlLabel value="Genre 1" control={<Radio />} label="Genre1" />
-        <FormControlLabel value="Genre2" control={<Radio />} label="Genre2" />
-        <FormControlLabel value="Genre3" control={<Radio />} label="Genre3" />
-        <FormControlLabel value="Genre4" control={<Radio />} label="Genre4" />
+      <div>
+        <FormLabel id="genre-radio-buttons-group-label">Genre</FormLabel>
+        <RadioGroup
+          row
+          aria-labelledby="genre-radio-buttons-group-label"
+          value={genres["subgenres"] ? genres["subgenres"]["name"] : ""}
+          name="radio-buttons-group"
+          onChange={(e) =>
+            setGenres({ ...genres, subgenres: { name: e.target.value } })
+          }
+        >
+          <FormControlLabel
+            value="Subgenre 1"
+            control={<Radio />}
+            label="Subgenre 1"
+          />
+          <FormControlLabel
+            value="Subgenre 2"
+            control={<Radio />}
+            label="Subgenre 2"
+          />
+          <FormControlLabel
+            value="Subgenre 3"
+            control={<Radio />}
+            label="Subgenre 3"
+          />
+          <FormControlLabel
+            value="Subgenre 4"
+            control={<Radio />}
+            label="Subgenre 4"
+          />
 
-        <FormControlLabel value="Genre5" control={<Radio />} label="Genre5" />
-        <FormControlLabel value="Genre6" control={<Radio />} label="Genre6" />
-        <FormControlLabel value="Genre7" control={<Radio />} label="Genre7" />
-        <FormControlLabel value="Genre8" control={<Radio />} label="Genre8" />
-      </RadioGroup>
-      <Button onClick={() => setAddNewSubGenre(true)}>Add New Subgenre</Button>
+          <FormControlLabel
+            value="Subgenre 5"
+            control={<Radio />}
+            label="Subgenre 5"
+          />
+          <FormControlLabel
+            value="Subgenre 6"
+            control={<Radio />}
+            label="Subgenre 6"
+          />
+          <FormControlLabel
+            value="Subgenre 7"
+            control={<Radio />}
+            label="Subgenre 7"
+          />
+        </RadioGroup>
+        <Button variant="contained" onClick={() => setAddNewSubGenre(true)}>
+          Add New Subgenre
+        </Button>
+      </div>
       <Button variant="contained" color="warning" onClick={() => setStep(1)}>
         Back
       </Button>
-      <Button variant="contained" color="success" onClick={() => setStep(3)}>
+      <Button
+        variant="contained"
+        color="success"
+        onClick={() => {
+          genres["subgenres"]["name"] && setStep(3);
+        }}
+      >
         Next
       </Button>
     </div>

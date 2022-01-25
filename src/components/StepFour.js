@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 
 const StepFour = () => {
-  const { setStep, addNewSubGenre, bookInfo, setBookInfo } =
+  const { setStep, addNewSubGenre, bookInfo, setBookInfo, submitHandler } =
     useContext(MultiStepContext);
 
   const handleChange = (e) =>
@@ -34,12 +34,12 @@ const StepFour = () => {
           <Select
             labelId="author-label"
             id="author"
-            label="Author"
+            label="author-label"
             name="author"
             value={bookInfo["author"]}
             onChange={handleChange}
           >
-            <MenuItem value="Nelson">Nelson</MenuItem>
+            <MenuItem value="Author 1">Author 1</MenuItem>
           </Select>
         </FormControl>
       </div>
@@ -55,7 +55,7 @@ const StepFour = () => {
       </div>
       <div style={{ marginTop: "10px" }}>
         <FormControl fullWidth>
-          <InputLabel id="publisher">Publisher</InputLabel>
+          <InputLabel id="publisher">Publisher </InputLabel>
           <Select
             labelId="publisher-label"
             id="publisher"
@@ -64,7 +64,7 @@ const StepFour = () => {
             value={bookInfo["publisher"]}
             onChange={handleChange}
           >
-            <MenuItem value="Nelson">Nelson</MenuItem>
+            <MenuItem value="Publisher 1">Publisher 1</MenuItem>
           </Select>
         </FormControl>
       </div>
@@ -99,7 +99,7 @@ const StepFour = () => {
             value={bookInfo["format"]}
             onChange={handleChange}
           >
-            <MenuItem value="Nelson">Nelson</MenuItem>
+            <MenuItem value="Format 1">Format 1</MenuItem>
           </Select>
         </FormControl>
       </div>
@@ -122,7 +122,7 @@ const StepFour = () => {
             value={bookInfo["editionLanguage"]}
             onChange={handleChange}
           >
-            <MenuItem value="Nelson">Nelson</MenuItem>
+            <MenuItem value="Spanish">Spanish</MenuItem>
           </Select>
         </FormControl>
       </div>
@@ -150,8 +150,12 @@ const StepFour = () => {
         >
           Back
         </Button>
-        <Button variant="contained" color="success" onClick={() => setStep(4)}>
-          Next
+        <Button
+          variant="contained"
+          color="success"
+          onClick={() => submitHandler()}
+        >
+          Complete
         </Button>
       </div>
     </div>

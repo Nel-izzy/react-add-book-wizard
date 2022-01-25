@@ -4,7 +4,7 @@ import { MultiStepContext } from "../context/StepContext";
 import React from "react";
 
 const StepThree = () => {
-  const { setStep, setAddNewSubGenre, genres, setGenres } =
+  const { setStep, setAddNewSubGenre, genres, setGenres, checked, setChecked } =
     useContext(MultiStepContext);
   return (
     <div style={{ marginTop: "20px" }}>
@@ -12,18 +12,22 @@ const StepThree = () => {
         variant="outlined"
         fullWidth
         label="Subgenre name"
-        value={genres["subgenres"]["description"] || ""}
+        value={genres["subgenres"] ? genres["subgenres"]["name"] : ""}
+        onChange={(e) =>
+          setGenres({ ...genres, subgenres: { name: e.target.value } })
+        }
+      />
+      <Checkbox
+        onClick={() => setChecked(!checked)}
+        checked={checked}
         onChange={(e) =>
           setGenres({
             ...genres,
-            subgenres: [
-              ...genres["subgenres"],
-              { description: e.target.value },
-            ],
+            subGenres: { isDescriptionRequired: !checked },
           })
         }
-      />
-      <Checkbox /> Description is required for this Subgenre
+      />{" "}
+      Description is required for this Subgenre
       <div>
         <Button
           variant="contained"
@@ -35,7 +39,13 @@ const StepThree = () => {
         >
           Back
         </Button>
-        <Button variant="contained" color="success" onClick={() => setStep(4)}>
+        <Button
+          variant="contained"
+          color="success"
+          onClick={() => {
+            genres["subgenres"]["name"] && setStep(4);
+          }}
+        >
           Next
         </Button>
       </div>

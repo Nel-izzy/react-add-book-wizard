@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import {
   Button,
-  Grid,
   RadioGroup,
   FormControlLabel,
   Radio,
@@ -22,15 +21,15 @@ const StepOne = () => {
         name="radio-buttons-group"
         onChange={(e) => setGenres({ ...genres, name: e.target.value })}
       >
-        <FormControlLabel value="Genre 1" control={<Radio />} label="Genre1" />
-        <FormControlLabel value="Genre2" control={<Radio />} label="Genre2" />
-        <FormControlLabel value="Genre3" control={<Radio />} label="Genre3" />
-        <FormControlLabel value="Genre4" control={<Radio />} label="Genre4" />
+        <FormControlLabel value="Genre 1" control={<Radio />} label="Genre 1" />
+        <FormControlLabel value="Genre 2" control={<Radio />} label="Genre 2" />
+        <FormControlLabel value="Genre 3" control={<Radio />} label="Genre 3" />
+        <FormControlLabel value="Genre 4" control={<Radio />} label="Genre 4" />
 
-        <FormControlLabel value="Genre5" control={<Radio />} label="Genre5" />
-        <FormControlLabel value="Genre6" control={<Radio />} label="Genre6" />
-        <FormControlLabel value="Genre7" control={<Radio />} label="Genre7" />
-        <FormControlLabel value="Genre8" control={<Radio />} label="Genre8" />
+        <FormControlLabel value="Genre 5" control={<Radio />} label="Genre 5" />
+        <FormControlLabel value="Genre 6" control={<Radio />} label="Genre 6" />
+        <FormControlLabel value="Genre 7" control={<Radio />} label="Genre 7" />
+        <FormControlLabel value="Genre 8" control={<Radio />} label="Genre 8" />
       </RadioGroup>
 
       <div>
@@ -38,7 +37,7 @@ const StepOne = () => {
           variant="contained"
           color="primary"
           onClick={() => {
-            setStep(2);
+            genres["name"] && setStep(2);
             addNewSubGenre && setAddNewSubGenre(false);
           }}
         >
