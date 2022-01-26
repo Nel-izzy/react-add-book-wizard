@@ -65,18 +65,25 @@ const StepTwo = () => {
           Add New Subgenre
         </Button>
       </div>
-      <Button variant="contained" color="warning" onClick={() => setStep(1)}>
-        Back
-      </Button>
-      <Button
-        variant="contained"
-        color="success"
-        onClick={() => {
-          genres["subgenres"]["name"] && setStep(3);
-        }}
-      >
-        Next
-      </Button>
+      <div style={{ marginTop: "10px" }}>
+        <Button
+          variant="contained"
+          color="warning"
+          onClick={() => setStep(1)}
+          style={{ marginRight: "10px" }}
+        >
+          Back
+        </Button>
+        <Button
+          variant="contained"
+          color="success"
+          onClick={() => {
+            genres["subgenres"]["name"] && setStep(3);
+          }}
+        >
+          Next
+        </Button>
+      </div>
     </div>
   );
 };

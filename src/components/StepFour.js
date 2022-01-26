@@ -10,8 +10,14 @@ import {
 } from "@mui/material";
 
 const StepFour = () => {
-  const { setStep, addNewSubGenre, bookInfo, setBookInfo, submitHandler } =
-    useContext(MultiStepContext);
+  const {
+    setStep,
+    addNewSubGenre,
+    bookInfo,
+    setBookInfo,
+    submitHandler,
+    genres,
+  } = useContext(MultiStepContext);
 
   const handleChange = (e) =>
     setBookInfo({ ...bookInfo, [e.target.name]: e.target.value });
@@ -108,6 +114,7 @@ const StepFour = () => {
           <TextField
             variant="outlined"
             label="Edition"
+            name="edition"
             value={bookInfo["edition"]}
             onChange={handleChange}
           />
@@ -139,13 +146,13 @@ const StepFour = () => {
         />
       </div>
 
-      <div style={{ marginTop: "10px" }}>
+      <div style={{ marginTop: "10px", marginBottom: "20px" }}>
         <Button
           variant="contained"
           color="warning"
+          style={{ marginRight: "10px" }}
           onClick={() => {
             addNewSubGenre ? setStep(3) : setStep(2);
-            //setAddNewSubGenre(false);
           }}
         >
           Back
@@ -153,9 +160,15 @@ const StepFour = () => {
         <Button
           variant="contained"
           color="success"
-          onClick={() => submitHandler()}
+          onClick={() => {
+            submitHandler(
+              "https://jsonplaceholder.typicode.com/results",
+              genres
+            );
+            setStep(5);
+          }}
         >
-          Complete
+          Add
         </Button>
       </div>
     </div>

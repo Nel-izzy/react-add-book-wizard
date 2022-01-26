@@ -12,7 +12,7 @@ const StepThree = () => {
         variant="outlined"
         fullWidth
         label="Subgenre name"
-        value={genres["subgenres"] ? genres["subgenres"]["name"] : ""}
+        value=""
         onChange={(e) =>
           setGenres({ ...genres, subgenres: { name: e.target.value } })
         }
@@ -28,8 +28,9 @@ const StepThree = () => {
         }
       />{" "}
       Description is required for this Subgenre
-      <div>
+      <div style={{ marginTop: "10px" }}>
         <Button
+          style={{ marginRight: "10px" }}
           variant="contained"
           color="warning"
           onClick={() => {

@@ -5,10 +5,10 @@ import StepTwo from "./components/StepTwo";
 import StepThree from "./components/StepThree";
 import StepFour from "./components/StepFour";
 import { MultiStepContext } from "./context/StepContext";
+import Display from "./components/Display";
 
 const App = () => {
-  const { currentStep, finalData, addNewSubGenre } =
-    useContext(MultiStepContext);
+  const { currentStep, addNewSubGenre } = useContext(MultiStepContext);
 
   function showStep(step) {
     switch (step) {
@@ -20,6 +20,8 @@ const App = () => {
         return addNewSubGenre ? <StepThree /> : <StepFour />;
       case 4:
         return <StepFour />;
+      case 5:
+        return <Display />;
     }
   }
   return (
