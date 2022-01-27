@@ -9,8 +9,9 @@ import {
 } from "@mui/material";
 
 const StepTwo = () => {
-  const { setStep, setAddNewSubGenre, setGenres, genres } =
+  const { setStep, setAddNewSubGenre, addNewSubGenre, setGenres, genres } =
     useContext(MultiStepContext);
+
   return (
     <div>
       <div>
@@ -21,7 +22,10 @@ const StepTwo = () => {
           value={genres["subgenres"] ? genres["subgenres"]["name"] : ""}
           name="radio-buttons-group"
           onChange={(e) =>
-            setGenres({ ...genres, subgenres: { name: e.target.value } })
+            setGenres({
+              ...genres,
+              subgenres: { name: e.target.value },
+            })
           }
         >
           <FormControlLabel
@@ -78,7 +82,11 @@ const StepTwo = () => {
           variant="contained"
           color="success"
           onClick={() => {
-            genres["subgenres"]["name"] && setStep(3);
+            if (addNewSubGenre) {
+              setStep(3);
+            } else {
+              genres["subgenres"]["name"] && setStep(3);
+            }
           }}
         >
           Next

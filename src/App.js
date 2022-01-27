@@ -22,6 +22,8 @@ const App = () => {
         return <StepFour />;
       case 5:
         return <Display />;
+      default:
+        return null;
     }
   }
   return (

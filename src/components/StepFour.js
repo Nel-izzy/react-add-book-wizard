@@ -28,7 +28,7 @@ const StepFour = () => {
         <TextField
           variant="outlined"
           fullWidth
-          value={bookInfo["title"]}
+          value={bookInfo["title"] || ""}
           label="Book Title"
           name="title"
           onChange={handleChange}
@@ -42,7 +42,7 @@ const StepFour = () => {
             id="author"
             label="author-label"
             name="author"
-            value={bookInfo["author"]}
+            value={bookInfo["author"] || ""}
             onChange={handleChange}
           >
             <MenuItem value="Author 1">Author 1</MenuItem>
@@ -55,7 +55,7 @@ const StepFour = () => {
           fullWidth
           label="ISBN"
           name="isbn"
-          value={bookInfo["isbn"]}
+          value={bookInfo["isbn"] || ""}
           onChange={handleChange}
         />
       </div>
@@ -67,7 +67,7 @@ const StepFour = () => {
             id="publisher"
             label="publisher-label"
             name="publisher"
-            value={bookInfo["publisher"]}
+            value={bookInfo["publisher"] || ""}
             onChange={handleChange}
           >
             <MenuItem value="Publisher 1">Publisher 1</MenuItem>
@@ -81,7 +81,7 @@ const StepFour = () => {
           label="Date Published"
           name="datePublished"
           placeholder="DD/MM/YYYY"
-          value={bookInfo["datePublished"]}
+          value={bookInfo["datePublished"] || ""}
           onChange={handleChange}
         />
       </div>
@@ -90,7 +90,7 @@ const StepFour = () => {
           variant="outlined"
           label="Number of Pages"
           name="numberOfPages"
-          value={bookInfo["numberOfPages"]}
+          value={bookInfo["numberOfPages"] || ""}
           onChange={handleChange}
         />
       </div>
@@ -102,7 +102,7 @@ const StepFour = () => {
             id="format"
             label="Format"
             name="format"
-            value={bookInfo["format"]}
+            value={bookInfo["format"] || ""}
             onChange={handleChange}
           >
             <MenuItem value="Format 1">Format 1</MenuItem>
@@ -115,7 +115,7 @@ const StepFour = () => {
             variant="outlined"
             label="Edition"
             name="edition"
-            value={bookInfo["edition"]}
+            value={bookInfo["edition"] || ""}
             onChange={handleChange}
           />
         </FormControl>
@@ -126,7 +126,7 @@ const StepFour = () => {
             id="Edition-Language"
             label="edition-language-label"
             name="editionLanguage"
-            value={bookInfo["editionLanguage"]}
+            value={bookInfo["editionLanguage"] || ""}
             onChange={handleChange}
           >
             <MenuItem value="Spanish">Spanish</MenuItem>
@@ -141,14 +141,14 @@ const StepFour = () => {
           multiline
           rows={4}
           name="description"
-          value={bookInfo["description"]}
+          value={bookInfo["description"] || ""}
           onChange={handleChange}
         />
       </div>
 
       <div style={{ marginTop: "10px", marginBottom: "20px" }}>
         <Button
-          variant="contained"
+          variant="outlined"
           color="warning"
           style={{ marginRight: "10px" }}
           onClick={() => {
@@ -158,14 +158,37 @@ const StepFour = () => {
           Back
         </Button>
         <Button
-          variant="contained"
+          variant="outlined"
           color="success"
           onClick={() => {
-            submitHandler(
-              "https://jsonplaceholder.typicode.com/results",
-              genres
-            );
-            setStep(5);
+            const {
+              title,
+              author,
+              isbn,
+              datePublished,
+              edition,
+              editionLanguage,
+              format,
+              numberOfPages,
+              publisher,
+            } = bookInfo;
+            if (
+              title &&
+              author &&
+              isbn &&
+              datePublished &&
+              edition &&
+              editionLanguage &&
+              format &&
+              numberOfPages &&
+              publisher
+            ) {
+              submitHandler(
+                "https://jsonplaceholder.typicode.com/posts",
+                genres
+              );
+              setStep(5);
+            }
           }}
         >
           Add

@@ -13,11 +13,11 @@ const StepOne = () => {
     useContext(MultiStepContext);
   return (
     <div>
-      <FormLabel id="demo-radio-buttons-group-label">Genre</FormLabel>
+      <FormLabel id="genre-radio-buttons-group-label">Genre</FormLabel>
       <RadioGroup
         row
-        aria-labelledby="demo-radio-buttons-group-label"
-        value={genres["name"]}
+        aria-labelledby="genre-radio-buttons-group-label"
+        value={genres["name"] || ""}
         name="radio-buttons-group"
         onChange={(e) => setGenres({ ...genres, name: e.target.value })}
       >

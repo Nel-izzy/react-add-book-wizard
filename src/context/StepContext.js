@@ -10,13 +10,14 @@ const StepContext = () => {
   const [addNewSubGenre, setAddNewSubGenre] = useState(false);
   const [checked, setChecked] = useState(false);
   const [bookInfo, setBookInfo] = useState([]);
+  const [subgenres, setSubgenres] = useState([]);
 
   const submitHandler = async (url, genres) => {
-    const state = setFinalData({ ...bookInfo, genres });
+    const state = await setFinalData({ ...bookInfo, genres });
     const response = await fetch(url, {
       method: "POST",
       headers: {
-        "Content-type": "Application/json",
+        "Content-type": "application/json",
       },
       body: JSON.stringify(state),
     });
@@ -40,6 +41,8 @@ const StepContext = () => {
           setStep,
           genres,
           setGenres,
+          subgenres,
+          setSubgenres,
           finalData,
           setFinalData,
           addNewSubGenre,

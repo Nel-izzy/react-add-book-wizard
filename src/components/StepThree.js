@@ -6,26 +6,36 @@ import React from "react";
 const StepThree = () => {
   const { setStep, setAddNewSubGenre, genres, setGenres, checked, setChecked } =
     useContext(MultiStepContext);
+  const { subgenres } = genres;
   return (
     <div style={{ marginTop: "20px" }}>
       <TextField
         variant="outlined"
         fullWidth
         label="Subgenre name"
-        value=""
-        onChange={(e) =>
-          setGenres({ ...genres, subgenres: { name: e.target.value } })
-        }
+        value={genres["subgenres"] ? genres["subgenres"][0]["name"] : ""}
+        onChange={(e) => {
+          setGenres({
+            ...genres,
+            ...subgenres,
+            subgenres: [{ name: e.target.value }],
+          });
+          //setGenres({ ...genres, subgenres });
+        }}
+        // setGenres({
+        //   ...genres,
+        //   subgenres: [...genres["subgenres"], { name: e.target.value }],
+        // })
       />
       <Checkbox
         onClick={() => setChecked(!checked)}
         checked={checked}
-        onChange={(e) =>
+        onChange={(e) => {
           setGenres({
             ...genres,
-            subGenres: { isDescriptionRequired: !checked },
-          })
-        }
+            subgenres: [{ ...subgenres, isDescriptionRequired: !checked }],
+          });
+        }}
       />{" "}
       Description is required for this Subgenre
       <div style={{ marginTop: "10px" }}>
@@ -43,8 +53,8 @@ const StepThree = () => {
         <Button
           variant="contained"
           color="success"
-          onClick={() => {
-            genres["subgenres"]["name"] && setStep(4);
+          onClick={(e) => {
+            genres["subgenres"][0]["name"] && setStep(4);
           }}
         >
           Next
